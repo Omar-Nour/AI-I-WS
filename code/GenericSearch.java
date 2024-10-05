@@ -1,6 +1,6 @@
 package code;
 
-//test
+//test 2
 
 public class GenericSearch {
 
