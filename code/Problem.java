@@ -18,7 +18,7 @@ public class Problem {
         this.queue = queue;
     }
 
-    public static boolean goalTest(State currState) {
+    public boolean goalTest(State currState) {
         return false;
     }
 }
