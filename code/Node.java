@@ -4,21 +4,17 @@ public class Node {
     Node parent;
     int depth;
     int pathCostFromRoot;
-    int heuristicToGoal1;
-    int heuristicToGoal2;
-    int nodesExpanded;
+    int heuristicToGoal;
     State state;
     String operatorApplied;
 
-    public Node(Node parent, int depth, State state, int pathCostFromRoot, int heuristicToGoal1, int heuristicToGoal2, String operatorApplied, int nodesExpanded) {
+    public Node(Node parent, int depth, State state, int pathCostFromRoot, int heuristicToGoal, String operatorApplied) {
         this.parent = parent;
         this.depth = depth;
         this.pathCostFromRoot = pathCostFromRoot;
-        this.heuristicToGoal1 = heuristicToGoal1;
-        this.heuristicToGoal2 = heuristicToGoal2;
+        this.heuristicToGoal = heuristicToGoal;
         this.state = state;
         this.operatorApplied = operatorApplied;
-        this.nodesExpanded = nodesExpanded;
     }
 
     public static int h1(State currState) {
