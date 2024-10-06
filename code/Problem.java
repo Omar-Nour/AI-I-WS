@@ -11,11 +11,11 @@ abstract class Problem {
     int nodesExpanded;
 
 
-    public Problem(ArrayList<State> stateSpace, State initialState, String[] operators, Queue<Node> queue) {
+    public Problem(ArrayList<State> stateSpace, State initialState, String[] operators) {
         this.stateSpace = stateSpace;
         this.initialState = initialState;
         this.operators = operators;
-        this.queue = queue;
+        this.queue = new ArrayDeque<>();
         this.visitedStates = new HashSet<>();
         this.nodesExpanded = 0;
     }

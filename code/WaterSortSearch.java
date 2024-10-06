@@ -6,7 +6,7 @@ import java.util.Queue;
 public class WaterSortSearch extends GenericSearch {
     public class waterSort extends Problem {
         public waterSort(ArrayList<State> stateSpace, State initialState, String[] operators, Queue<Node> queue) {
-            super(stateSpace, initialState, operators, queue);
+            super(stateSpace, initialState, operators);
         }
         @Override
         boolean goalTest(State currState) {
