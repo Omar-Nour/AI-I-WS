@@ -39,6 +39,7 @@ class WaterSort extends Problem {
 
     @Override
     boolean goalTest(State currState) {
+
         char[][] bottles = getBottles(currState);
         for (int i = 0; i < bottles.length; i++) {
             for (int j = 0; j < bottles[i].length; j++) {
