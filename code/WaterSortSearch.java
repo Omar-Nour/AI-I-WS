@@ -56,6 +56,7 @@ class WaterSort extends Problem {
 
     @Override
     boolean shouldPerformAction(State currState, String currOperator, Node currentNode) {
+
         // check if in visitedStates
         // check if valid
         // check if parent is not pour(i, j) and current action is pour(j, i)
