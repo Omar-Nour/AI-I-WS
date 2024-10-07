@@ -20,6 +20,10 @@ abstract class Problem {
         this.nodesExpanded = 0;
     }
 
+    abstract int h1(State currState);
+
+    abstract int h2(State currState);
+
 
     abstract boolean goalTest(State currState) ;
     abstract boolean shouldPerformAction(State currState, String currOperator, Node currentNode);

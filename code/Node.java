@@ -17,11 +17,5 @@ public class Node {
         this.operatorApplied = operatorApplied;
     }
 
-    public static int h1(State currState) {
-        return 0;
-    }
 
-    public static int h2(State currState) {
-        return 0;
-    }
 }

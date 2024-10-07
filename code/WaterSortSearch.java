@@ -159,6 +159,16 @@ class WaterSort extends Problem {
     State testAction(Node parentNode, State currState, String currOperator, boolean visualize, int heuristicType) {
         return null;
     }
+
+    @Override
+    int h1(State currState) {
+        return 0;
+    }
+
+    @Override
+    int h2(State currState) {
+        return 0;
+    }
 }
 
 public class WaterSortSearch extends GenericSearch {

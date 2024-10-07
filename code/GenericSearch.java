@@ -7,7 +7,7 @@ public class GenericSearch {
 
     public static Node generalSearch(Problem problem, String searchStrategy, boolean visualize) {
         Queue<Node> nodes = new ArrayDeque<>();
-        nodes.add(new Node(null, 0, problem.initialState, 0, code.Node.h1(problem.initialState), null));
+        nodes.add(new Node(null, 0, problem.initialState, 0, problem.h1(problem.initialState), null));
         while (!nodes.isEmpty()) {
             Node currNode = nodes.poll();
             if (problem.goalTest(currNode.state)) {
