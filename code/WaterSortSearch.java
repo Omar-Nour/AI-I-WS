@@ -193,6 +193,9 @@ public class WaterSortSearch extends GenericSearch {
 
         WaterSort problem = new WaterSort(null, state, operators);
         Node solution = generalSearch(problem, strategy, visualize);
+        if (solution == null) {
+            return "NOSOLUTION";
+        }
 
         return "";
     }

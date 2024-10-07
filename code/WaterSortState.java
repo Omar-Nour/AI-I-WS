@@ -12,7 +12,7 @@ public class WaterSortState implements State {
         this.bottleCapacity = Integer.parseInt(lines[1]);
         this.bottles = new char[numOfBottles][bottleCapacity];
         for (int i = 0; i < numOfBottles; i++) {
-            String[] bottle = lines[i].split(",");
+            String[] bottle = lines[i+2].split(",");
             for (int j = bottleCapacity - 1; j >= 0; j--) {
                 this.bottles[i][j] = bottle[j].charAt(0);
             }
