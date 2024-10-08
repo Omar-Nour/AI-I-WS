@@ -3,10 +3,10 @@ package code;
 import java.util.ArrayList;
 import java.util.Queue;
 
-class WaterSort extends Problem {
+class WaterSortProblem extends Problem {
 
 
-    public WaterSort(ArrayList<State> stateSpace, State initialState, String[] operators) {
+    public WaterSortProblem(ArrayList<State> stateSpace, State initialState, String[] operators) {
         super(stateSpace, initialState, operators);
 
     }
@@ -138,7 +138,7 @@ class WaterSort extends Problem {
             }
         }
 
-        int numOfPourCellsAvailable = getBottleCapacity(currState) - j;
+        int numOfPourCellsAvailable = getBottleCapacity(currState) - j ;
 
         int actualPourLayers = Math.min(numOfLayersToPour, numOfPourCellsAvailable);
 
@@ -154,7 +154,7 @@ class WaterSort extends Problem {
         State newState = new WaterSortState(newBottles);
 
         //TODO: cost+1 or cost+actualPourLayers???
-        Node newNode = new Node(currentNode, currentNode.depth + 1, newState, currentNode.pathCostFromRoot + 1, 0, currOperator);
+        Node newNode = new Node(currentNode, currentNode.depth + 1, newState, currentNode.pathCostFromRoot + actualPourLayers, 0, currOperator);
         return newNode;
     }
 
@@ -194,7 +194,7 @@ public class WaterSortSearch extends GenericSearch {
             }
         }
 
-        WaterSort problem = new WaterSort(null, state, operators);
+        WaterSortProblem problem = new WaterSortProblem(null, state, operators);
         Node solution = generalSearch(problem, strategy, visualize);
 
         if (solution == null) {
@@ -202,6 +202,7 @@ public class WaterSortSearch extends GenericSearch {
         }
 
         System.out.println(strategy + solution.pathCostFromRoot);
+        System.out.println("sol: " + solution.state);
 
         return genSolutionStrFromNode(solution, problem.nodesExpanded);
     }
@@ -212,7 +213,7 @@ public class WaterSortSearch extends GenericSearch {
     }
 
     public static String genSolutionStrFromNode(Node sol, int nodesExpanded) {
-        String operators = "" + nodesExpanded + ";" + sol.pathCostFromRoot;
+        String operators = "" + sol.pathCostFromRoot + ";" + nodesExpanded;
         operators = sol.operatorApplied + ";" + operators;
         while (sol.parent != null) {
             sol = sol.parent;

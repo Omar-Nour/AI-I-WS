@@ -427,6 +427,18 @@ class Checker{
     }
 
     boolean t(){
+        /////////// TESTS HACK/////////////////////////
+        System.out.println("Bozo bottles: ");
+
+        for (int u = 0; u< a.length; u++)
+        {
+            char[] b = a[u];
+            for (char c : b) {
+                System.out.print("" + c + ",");
+            }
+            System.out.println(";");
+        }
+        ////////////////////////////////////////////////
         for (int u = 0; u< a.length; u++){
             char[] b = a[u];
             int v = b.length-1;
@@ -463,6 +475,8 @@ class Checker{
         if(!x) {
             return false;
         }
+
+        System.out.println("Bozo cost: " + this.b);
         return t() && this.b == _a;
     }
 }
