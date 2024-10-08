@@ -82,7 +82,19 @@ public class GenericSearch {
         // before doing operator on "nodeToExpand" check with problem.shouldPerformAction(State, operator)
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, 0);
         // insert each node in "nodes" according to search strategy
-        return new ArrayDeque<>();
+        boolean incrementedExpanded = false;
+
+        for (String opr : operators) {
+            if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
+                if (!incrementedExpanded) problem.nodesExpanded++;
+                System.out.println("should do " +  opr);
+                Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, 0);
+                insertSorted(nodes, newNode);
+            }
+        }
+        System.out.println("iter------------");
+
+        return nodes;
     }
 
     public static Queue<Node> greedy(Queue<Node> nodes, Node nodeToExpand, String[] operators, int heuristicNum, Problem problem, boolean visualize) {
@@ -101,6 +113,28 @@ public class GenericSearch {
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, heuristicNum);
         // insert each node in "nodes" according to search strategy
         return new ArrayDeque<>();
+    }
+
+    public static void insertSorted(Queue<Node> nodes, Node n) {
+        int count = nodes.size();
+
+        boolean inserted = false;
+        while (count-- > 0) {
+            if (nodes.peek().pathCostFromRoot >= n.pathCostFromRoot && !inserted) {
+                nodes.add(n);
+                nodes.add(nodes.poll());
+                inserted = true;
+            } else {
+                nodes.add(nodes.poll());
+            }
+        }
+
+        if (!inserted) {
+            nodes.add(n);
+        }
+
+
+        System.out.println(nodes);
     }
 
 

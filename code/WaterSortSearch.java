@@ -61,6 +61,9 @@ class WaterSort extends Problem {
         // check if in visitedStates
         // check if valid
         // check if parent is not pour(i, j) and current action is pour(j, i)
+        if (currentNode.parent == null) // this is root so all operators are fine
+            return true;
+
         String[] lines = currOperator.split("_");
         int theI = Integer.parseInt(lines[1]);
         int theJ = Integer.parseInt(lines[2]);
@@ -105,16 +108,16 @@ class WaterSort extends Problem {
 
         // create a copy of the current state (the bottle)
         char[][] bottles = getBottles(currState);
-        char[][] newBottles = new char[bottles.length][bottles[0].length];
+        char[][] newBottles = new char[bottles.length][WaterSortState.bottleCapacity];
         for (int i = 0; i < bottles.length; i++) {
-            for (int j = 0; j < bottles[i].length; j++) {
+            for (int j = 0; j < WaterSortState.bottleCapacity; j++) {
                 newBottles[i][j] = bottles[i][j];
             }
         }
 
         // know at which index to pour from and to
         int i = getBottleCapacity(currState) - 1;
-        while (newBottles[bottleFrom][i] == 'e') {
+        while (i >= 1 && newBottles[bottleFrom][i] == 'e') {
             i--;
         }
 
@@ -130,7 +133,7 @@ class WaterSort extends Problem {
 
         int j = 0;
         if (newBottles[bottleTo][j] != 'e') {
-            while (newBottles[bottleTo][j] != 'e') {
+            while (j < WaterSortState.bottleCapacity && newBottles[bottleTo][j] != 'e' ) {
                 j++;
             }
         }
@@ -193,11 +196,30 @@ public class WaterSortSearch extends GenericSearch {
 
         WaterSort problem = new WaterSort(null, state, operators);
         Node solution = generalSearch(problem, strategy, visualize);
+
         if (solution == null) {
             return "NOSOLUTION";
         }
 
-        return "";
+        System.out.println(strategy + solution.pathCostFromRoot);
+
+        return genSolutionStrFromNode(solution, problem.nodesExpanded);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solve("5;4;" + "b,y,r,b;" + "b,y,r,r;" +
+                "y,r,b,y;" + "e,e,e,e;" + "e,e,e,e;", "UC", false));
+    }
+
+    public static String genSolutionStrFromNode(Node sol, int nodesExpanded) {
+        String operators = "" + nodesExpanded + ";" + sol.pathCostFromRoot;
+        operators = sol.operatorApplied + ";" + operators;
+        while (sol.parent != null) {
+            sol = sol.parent;
+            if (sol.parent != null)
+                operators = sol.operatorApplied + "," + operators;
+        }
+        return operators;
     }
 }
 

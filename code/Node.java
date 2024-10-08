@@ -17,5 +17,8 @@ public class Node {
         this.operatorApplied = operatorApplied;
     }
 
-
+    @Override
+    public String toString() {
+        return state.toString();
+    }
 }
