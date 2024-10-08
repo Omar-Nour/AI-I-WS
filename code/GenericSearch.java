@@ -54,6 +54,7 @@ public class GenericSearch {
         // before doing operator on "nodeToExpand" check with problem.shouldPerformAction(State, operator)
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, 0);
         // insert each node in "nodes" according to search strategy
+        // return modified nodes
         return new ArrayDeque<>();
     }
 
@@ -63,6 +64,7 @@ public class GenericSearch {
         // before doing operator on "nodeToExpand" check with problem.shouldPerformAction(State, operator)
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, 0);
         // insert each node in "nodes" according to search strategy
+        // return modified nodes
         return new ArrayDeque<>();
     }
 
@@ -82,6 +84,7 @@ public class GenericSearch {
         // before doing operator on "nodeToExpand" check with problem.shouldPerformAction(State, operator)
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, 0);
         // insert each node in "nodes" according to search strategy
+        // return modified nodes
         boolean incrementedExpanded = false;
 
         for (String opr : operators) {
