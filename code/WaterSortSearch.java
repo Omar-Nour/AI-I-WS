@@ -68,6 +68,7 @@ class WaterSortProblem extends Problem {
         int theI = Integer.parseInt(lines[1]);
         int theJ = Integer.parseInt(lines[2]);
 
+        // TODO: FIX VISITED STATES TO STORE NEW STATES NOT THE CURRENT
         if (visitedStates.contains(currState.toString())) {
             return false;
         } else if (bottleIsEmpty(currState, theI) || bottleIsFull(currState, theJ)) {
@@ -95,6 +96,7 @@ class WaterSortProblem extends Problem {
         // perform action on current state in a new node and adjust pathcost, adjust nodes expanded, calculate heuristic if (1 or 2), depth, parent operator applied
         // return the new node
 
+        // TODO: FIX VISITED STATES TO STORE NEW STATES NOT THE CURRENT
         visitedStates.add(currState.toString());
         // if (visualize) {
         //  System.out.println(currState.toString() + " -> " + currOperator);
@@ -152,8 +154,6 @@ class WaterSortProblem extends Problem {
 
         //create a new state
         State newState = new WaterSortState(newBottles);
-
-        //TODO: cost+1 or cost+actualPourLayers???
         Node newNode = new Node(currentNode, currentNode.depth + 1, newState, currentNode.pathCostFromRoot + actualPourLayers, 0, currOperator);
         return newNode;
     }

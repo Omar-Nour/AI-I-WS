@@ -27,6 +27,8 @@ public class GenericSearch {
         ∗ GRi for greedy search, with i ∈ {1, 2} distinguishing the two heuristics.
         ∗ ASi for A∗ search with i ∈ {1, 2} distinguishing the two heuristics.
         */
+        problem.nodesExpanded++;
+
         switch (searchStartegy) {
             case "BF":
                 return bfs(nodes, nodeToExpand, operators, problem, visualize);
@@ -65,6 +67,7 @@ public class GenericSearch {
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, 0);
         // insert each node in "nodes" according to search strategy
         // return modified nodes
+
         return new ArrayDeque<>();
     }
 
@@ -85,11 +88,9 @@ public class GenericSearch {
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, 0);
         // insert each node in "nodes" according to search strategy
         // return modified nodes
-        boolean incrementedExpanded = false;
 
         for (String opr : operators) {
             if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
-                if (!incrementedExpanded) problem.nodesExpanded++;
                 System.out.println("should do " +  opr);
                 Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, 0);
                 insertSorted(nodes, newNode);

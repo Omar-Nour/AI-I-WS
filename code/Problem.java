@@ -16,6 +16,7 @@ abstract class Problem {
         this.initialState = initialState;
         this.operators = operators;
         this.queue = new ArrayDeque<>();
+        // TODO: FIX VISITED STATES TO STORE THE INITIAL STATE
         this.visitedStates = new HashSet<>();
         this.nodesExpanded = 0;
     }
