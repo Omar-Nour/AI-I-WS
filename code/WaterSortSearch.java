@@ -68,8 +68,9 @@ class WaterSortProblem extends Problem {
         int theI = Integer.parseInt(lines[1]);
         int theJ = Integer.parseInt(lines[2]);
 
-        // TODO: FIX VISITED STATES TO STORE NEW STATES NOT THE CURRENT
-        if (visitedStates.contains(currState.toString())) {
+        State newExpectedState = (State) testAction(currentNode, currState, currOperator, false, 0)[0];
+
+        if (visitedStates.contains(newExpectedState.toString())) {
             return false;
         } else if (bottleIsEmpty(currState, theI) || bottleIsFull(currState, theJ)) {
             return false;
@@ -96,11 +97,22 @@ class WaterSortProblem extends Problem {
         // perform action on current state in a new node and adjust pathcost, adjust nodes expanded, calculate heuristic if (1 or 2), depth, parent operator applied
         // return the new node
 
-        // TODO: FIX VISITED STATES TO STORE NEW STATES NOT THE CURRENT
-        visitedStates.add(currState.toString());
+
+
         // if (visualize) {
         //  System.out.println(currState.toString() + " -> " + currOperator);
         // }
+
+        State newState = (State) testAction(currentNode, currState, currOperator, visualize, heuristicType)[0];
+        visitedStates.add(newState.toString());
+        int actualPourLayers = (int) testAction(currentNode, currState, currOperator, visualize, heuristicType)[1];
+        Node newNode = new Node(currentNode, currentNode.depth + 1, newState, currentNode.pathCostFromRoot + actualPourLayers, 0, currOperator);
+        return newNode;
+    }
+
+    @Override
+    Object[] testAction(Node parentNode, State currState, String currOperator, boolean visualize, int heuristicType) {
+
 
         String[] lines = currOperator.split("_");
 
@@ -154,13 +166,7 @@ class WaterSortProblem extends Problem {
 
         //create a new state
         State newState = new WaterSortState(newBottles);
-        Node newNode = new Node(currentNode, currentNode.depth + 1, newState, currentNode.pathCostFromRoot + actualPourLayers, 0, currOperator);
-        return newNode;
-    }
-
-    @Override
-    State testAction(Node parentNode, State currState, String currOperator, boolean visualize, int heuristicType) {
-        return null;
+        return new Object[]{newState, actualPourLayers};
     }
 
     @Override

@@ -16,8 +16,8 @@ abstract class Problem {
         this.initialState = initialState;
         this.operators = operators;
         this.queue = new ArrayDeque<>();
-        // TODO: FIX VISITED STATES TO STORE THE INITIAL STATE
         this.visitedStates = new HashSet<>();
+        this.visitedStates.add(initialState.toString());
         this.nodesExpanded = 0;
     }
 
@@ -29,5 +29,5 @@ abstract class Problem {
     abstract boolean goalTest(State currState) ;
     abstract boolean shouldPerformAction(State currState, String currOperator, Node currentNode);
     abstract Node perfomAction (Node currentNode, State currState, String currOperator, boolean visualize, int heuristicType);
-    abstract State testAction(Node currentNode, State currState, String currOperator, boolean visualize, int heuristicType);
+    abstract Object[] testAction(Node currentNode, State currState, String currOperator, boolean visualize, int heuristicType);
 }
