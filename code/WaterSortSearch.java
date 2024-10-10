@@ -215,7 +215,7 @@ public class WaterSortSearch extends GenericSearch {
 
     public static void main(String[] args) {
         System.out.println(solve("5;4;" + "b,y,r,b;" + "b,y,r,r;" +
-                "y,r,b,y;" + "e,e,e,e;" + "e,e,e,e;", "UC", false));
+                "y,r,b,y;" + "e,e,e,e;" + "e,e,e,e;", "ID", false));
     }
 
     public static String genSolutionStrFromNode(Node sol, int nodesExpanded) {

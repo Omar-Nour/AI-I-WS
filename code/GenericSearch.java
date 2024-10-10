@@ -1,20 +1,29 @@
 package code;
 
 import java.util.ArrayDeque;
+import java.util.HashSet;
 import java.util.Queue;
 
 public class GenericSearch {
 
     public static Node generalSearch(Problem problem, String searchStrategy, boolean visualize) {
-        Queue<Node> nodes = new ArrayDeque<>();
-        nodes.add(new Node(null, 0, problem.initialState, 0, problem.h1(problem.initialState), null));
-        while (!nodes.isEmpty()) {
-            Node currNode = nodes.poll();
-            if (problem.goalTest(currNode.state)) {
-                return currNode;
+
+        Node initialNode = new Node(null, 0, problem.initialState, 0, problem.h1(problem.initialState), null);
+
+        if (searchStrategy.equals("ID")) {
+            return itrDeep(initialNode, problem.operators, problem, visualize);
+        } else {
+            Queue<Node> nodes = new ArrayDeque<>();
+            nodes.add(initialNode);
+            while (!nodes.isEmpty()) {
+                Node currNode = nodes.poll();
+                if (problem.goalTest(currNode.state)) {
+                    return currNode;
+                }
+                nodes = qAndExpand(nodes, currNode, searchStrategy, problem.operators, problem, visualize);
             }
-            nodes = qAndExpand(nodes, currNode, searchStrategy, problem.operators, problem, visualize);
         }
+
         return null;
     }
 
@@ -22,7 +31,6 @@ public class GenericSearch {
         /*
         ∗ BF for breadth-first search,
         ∗ DF for depth-first search,
-        ∗ ID for iterative deepening search,
         ∗ UC for uniform cost search,
         ∗ GRi for greedy search, with i ∈ {1, 2} distinguishing the two heuristics.
         ∗ ASi for A∗ search with i ∈ {1, 2} distinguishing the two heuristics.
@@ -34,8 +42,6 @@ public class GenericSearch {
                 return bfs(nodes, nodeToExpand, operators, problem, visualize);
             case "DF":
                 return dfs(nodes, nodeToExpand, operators, problem, visualize);
-            case "ID":
-                return itrDeep(nodes, nodeToExpand, operators, problem, visualize);
             case "UC":
                 return ucs(nodes, nodeToExpand, operators, problem, visualize);
             case "GR1":
@@ -71,14 +77,46 @@ public class GenericSearch {
         return new ArrayDeque<>();
     }
 
-    public static Queue<Node> itrDeep(Queue<Node> nodes, Node nodeToExpand, String[] operators, Problem problem, boolean visualize) {
+    public static Node itrDeep(Node initialNode, String[] operators, Problem problem, boolean visualize) {
         // HUUUH
         // DO NOT REMOVE, ONLY ADD NODES
         // loop on operators
         // before doing operator on "nodeToExpand" check with problem.shouldPerformAction(State, operator)
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, 0);
         // insert each node in "nodes" according to search strategy
-        return new ArrayDeque<>();
+
+        Queue<Node> nodes = new ArrayDeque<>();
+        nodes.add(initialNode);
+
+        int maxDepth = 0;
+        while (true) {
+
+            if (nodes.isEmpty()) {
+                nodes.add(initialNode);
+                maxDepth++;
+
+                //reset visited states
+                problem.visitedStates = new HashSet<String>();
+                problem.visitedStates.add(initialNode.state.toString());
+            }
+
+
+            Node currNode = nodes.poll();
+            if (problem.goalTest(currNode.state)) {
+                return currNode;
+            }
+
+            if (currNode.depth < maxDepth) {
+                problem.nodesExpanded++;
+                for (String opr : operators) {
+                    if (problem.shouldPerformAction(currNode.state, opr, currNode)) {
+                        Node newNode = problem.perfomAction(currNode, currNode.state, opr, visualize, 0);
+                        nodes = enqueueAtFront(nodes, newNode);
+                    }
+                }
+            }
+
+        }
     }
 
     public static Queue<Node> ucs(Queue<Node> nodes, Node nodeToExpand, String[] operators, Problem problem, boolean visualize) {
@@ -139,6 +177,18 @@ public class GenericSearch {
 
 
         System.out.println(nodes);
+    }
+
+    public static Queue<Node> enqueueAtFront(Queue<Node> nodes, Node n) {
+        Queue<Node> temp = new ArrayDeque<>();
+        temp.add(n);
+        while (!nodes.isEmpty()) {
+            temp.add(nodes.poll());
+        }
+
+        System.out.println(temp);
+        return temp;
+
     }
 
 
