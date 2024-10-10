@@ -8,7 +8,7 @@ public class GenericSearch {
 
     public static Node generalSearch(Problem problem, String searchStrategy, boolean visualize) {
 
-        Node initialNode = new Node(null, 0, problem.initialState, 0, problem.h1(problem.initialState), null);
+        Node initialNode = new Node(null, 0, problem.initialState, 0, 99999, null);
 
         if (searchStrategy.equals("ID")) {
             return itrDeep(initialNode, problem.operators, problem, visualize);

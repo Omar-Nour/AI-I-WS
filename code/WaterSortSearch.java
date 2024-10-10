@@ -1,8 +1,7 @@
 package code;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Queue;
+import java.security.Key;
+import java.util.*;
 
 class WaterSortProblem extends Problem {
 
@@ -104,9 +103,11 @@ class WaterSortProblem extends Problem {
         //  System.out.println(currState.toString() + " -> " + currOperator);
         // }
 
-        State newState = (State) testAction(currentNode, currState, currOperator, visualize, heuristicType)[0];
+        Object[] res = testAction(currentNode, currState, currOperator, visualize, heuristicType);
+
+        State newState = (State) res[0];
         visitedStates.add(newState.toString());
-        int actualPourLayers = (int) testAction(currentNode, currState, currOperator, visualize, heuristicType)[1];
+        int actualPourLayers = (int) res[1];
         Node newNode = new Node(currentNode, currentNode.depth + 1, newState, currentNode.pathCostFromRoot + actualPourLayers, (heuristicType == 1) ? h1(newState) : h2(newState), currOperator);
         return newNode;
     }
@@ -195,21 +196,27 @@ class WaterSortProblem extends Problem {
 
     @Override
     int h2(State currState) {
-        // h2 logik: for every bottle calculate numUniqueColors - 1
         int minPourCountToFix = 0;
-        HashSet<Character> colors = new HashSet<>();
         char[][] bottles = (char[][]) currState.getDS();
-        for (int bi = 0; bi < bottles.length; bi++) {
-            char[] b = bottles[bi];
-            for (int i = 0; i < b.length; i++) {
-               if (b[i] == 'e' && i == 0) {
-                   break;
-               } else if (b[i] != 'e' && !colors.contains(b[i])) {
-                   colors.add(b[i]);
-               }
+
+        for (char[] bottle : bottles) {
+            char baseColor = 'e';
+            boolean isMixed = false;
+
+            for (char layer : bottle) {
+                if (layer != 'e') {
+                    if (baseColor == 'e') {
+                        baseColor = layer;
+                    } else if (layer != baseColor) {
+                        isMixed = true;
+                    }
+                    if (isMixed) {
+                        minPourCountToFix++;
+                    }
+                }
             }
-            minPourCountToFix += (colors.size() > 0) ? colors.size() - 1: 0;
         }
+
         return minPourCountToFix;
     }
 }
@@ -249,7 +256,7 @@ public class WaterSortSearch extends GenericSearch {
 
     public static void main(String[] args) {
         System.out.println(solve("5;4;" + "b,y,r,b;" + "b,y,r,r;" +
-                "y,r,b,y;" + "e,e,e,e;" + "e,e,e,e;", "GR2", false));
+                "y,r,b,y;" + "e,e,e,e;" + "e,e,e,e;", "AS2", false));
     }
 
     public static String genSolutionStrFromNode(Node sol, int nodesExpanded) {
