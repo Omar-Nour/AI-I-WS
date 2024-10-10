@@ -131,7 +131,7 @@ public class GenericSearch {
             if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
                 System.out.println("should do " +  opr);
                 Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, 0);
-                insertSorted(nodes, newNode);
+                insertSorted(nodes, newNode, true, false);
             }
         }
         System.out.println("iter------------");
@@ -145,7 +145,16 @@ public class GenericSearch {
         // before doing operator on "nodeToExpand" check with problem.shouldPerformAction(State, operator)
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, heuristicNum);
         // insert each node in "nodes" according to search strategy
-        return new ArrayDeque<>();
+        for (String opr : operators) {
+            if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
+                System.out.println("should do " +  opr);
+                Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, heuristicNum);
+                insertSorted(nodes, newNode, false, true);
+            }
+        }
+        System.out.println("iter------------");
+
+        return nodes;
     }
 
     public static Queue<Node> Astar(Queue<Node> nodes, Node nodeToExpand, String[] operators, int heuristicNum, Problem problem, boolean visualize) {
@@ -154,15 +163,29 @@ public class GenericSearch {
         // before doing operator on "nodeToExpand" check with problem.shouldPerformAction(State, operator)
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, heuristicNum);
         // insert each node in "nodes" according to search strategy
-        return new ArrayDeque<>();
+        for (String opr : operators) {
+            if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
+                System.out.println("should do " +  opr);
+                Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, heuristicNum);
+                insertSorted(nodes, newNode, true, true);
+            }
+        }
+        System.out.println("iter------------");
+        return nodes;
     }
 
-    public static void insertSorted(Queue<Node> nodes, Node n) {
+    public static void insertSorted(Queue<Node> nodes, Node n, boolean gn, boolean hn) {
         int count = nodes.size();
+        int costCalculationQueueNode = 0;
+        int costCalculationInsertNode = 0;
+        // gn : cost from root only
+        // hn : cost to goal
 
         boolean inserted = false;
         while (count-- > 0) {
-            if (nodes.peek().pathCostFromRoot >= n.pathCostFromRoot && !inserted) {
+            costCalculationQueueNode = gn ? nodes.peek().pathCostFromRoot + ((hn) ? nodes.peek().heuristicToGoal : 0) : nodes.peek().heuristicToGoal;
+            costCalculationInsertNode = gn ? n.pathCostFromRoot + ((hn) ? n.heuristicToGoal : 0) : n.heuristicToGoal;
+            if (!inserted && costCalculationQueueNode >= costCalculationInsertNode) {
                 nodes.add(n);
                 nodes.add(nodes.poll());
                 inserted = true;
