@@ -84,7 +84,17 @@ public class GenericSearch {
         // insert each node in "nodes" according to search strategy
         // return modified nodes
 
-        return new ArrayDeque<>();
+        //apply the depth first search based on the same structure as other search strategies
+
+        for (String opr : operators) {
+            if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
+                System.out.println("should do " +  opr);
+                Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, 0);
+                nodes = enqueueAtFront(nodes, newNode);
+            }
+        }
+
+        return nodes;
     }
 
     public static Node itrDeep(Node initialNode, String[] operators, Problem problem, boolean visualize) {
