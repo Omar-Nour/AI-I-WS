@@ -63,7 +63,17 @@ public class GenericSearch {
         // create nodes after acceptance check by calling problem.performAction(nodeToExpand, nodeToExpand.state, currOperator,  visualize, 0);
         // insert each node in "nodes" according to search strategy
         // return modified nodes
-        return new ArrayDeque<>();
+
+        for (String opr : operators) {
+            if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
+                System.out.println("should do " +  opr);
+                Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, 0);
+                nodes.add(newNode);
+            }
+        }
+        System.out.println("iter------------");
+
+        return nodes;
     }
 
     public static Queue<Node> dfs(Queue<Node> nodes, Node nodeToExpand, String[] operators, Problem problem, boolean visualize) {
