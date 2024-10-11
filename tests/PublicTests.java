@@ -108,6 +108,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testb2() throws Exception {
         String solution = WaterSortSearch.solve(grid2, "DF", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid2);
         assertTrue("The output actions do not lead to a goal state.",  pc.applyPlan(grid2, solution));
     }
@@ -125,6 +126,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testb4() throws Exception {
         String solution = WaterSortSearch.solve(grid4, "DF", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid4);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid4, solution));
     }
@@ -134,6 +136,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testc0() throws Exception {
         String solution = WaterSortSearch.solve(grid0, "UC", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid0);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid0, solution));
     }
@@ -141,6 +144,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testc1() throws Exception {
         String solution = WaterSortSearch.solve(grid1, "UC", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid1);
 assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1, solution));
     }
@@ -158,6 +162,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testc3() throws Exception {
         String solution = WaterSortSearch.solve(grid3, "UC", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid3);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid3, solution));
     }
@@ -166,6 +171,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testc4() throws Exception {
         String solution = WaterSortSearch.solve(grid4, "UC", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid4);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid4, solution));
     }
@@ -174,6 +180,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testd0() throws Exception {
         String solution = WaterSortSearch.solve(grid0, "ID", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid0);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid0, solution));
     }
@@ -182,6 +189,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testd1() throws Exception {
         String solution = WaterSortSearch.solve(grid1, "ID", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid1);
 assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1, solution));
     }
@@ -190,6 +198,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testd2() throws Exception {
         String solution = WaterSortSearch.solve(grid2, "ID", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid2);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid2, solution));
     }
@@ -198,6 +207,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testd3() throws Exception {
         String solution = WaterSortSearch.solve(grid3, "ID", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid3);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid3, solution));
     }
@@ -206,6 +216,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testd4() throws Exception {
         String solution = WaterSortSearch.solve(grid4, "ID", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid4);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid4, solution));
     }
@@ -215,6 +226,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void teste0() throws Exception {
         String solution = WaterSortSearch.solve(grid0, "GR1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid0);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid0, solution));
     }
@@ -223,6 +235,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void teste1() throws Exception {
         String solution = WaterSortSearch.solve(grid1, "GR1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid1);
 assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1, solution));
     }
@@ -231,6 +244,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void teste2() throws Exception {
         String solution = WaterSortSearch.solve(grid2, "GR1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid2);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid2, solution));
     }
@@ -239,6 +253,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void teste3() throws Exception {
         String solution = WaterSortSearch.solve(grid3, "GR1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid3);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid3, solution));
     }
@@ -247,6 +262,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void teste4() throws Exception {
         String solution = WaterSortSearch.solve(grid4, "GR1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid4);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid4, solution));
     }
@@ -256,6 +272,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testf0() throws Exception {
         String solution = WaterSortSearch.solve(grid0, "GR2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid0);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid0, solution));
     }
@@ -264,6 +281,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testf1() throws Exception {
         String solution = WaterSortSearch.solve(grid1, "GR2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid1);
 assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1, solution));
     }
@@ -272,6 +290,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testf2() throws Exception {
         String solution = WaterSortSearch.solve(grid2, "GR2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid2);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid2, solution));
     }
@@ -280,6 +299,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testf3() throws Exception {
         String solution = WaterSortSearch.solve(grid3, "GR2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid3);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid3, solution));
     }
@@ -288,6 +308,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testf4() throws Exception {
         String solution = WaterSortSearch.solve(grid4, "GR2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid4);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid4, solution));
     }
@@ -296,6 +317,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testg0() throws Exception {
         String solution = WaterSortSearch.solve(grid0, "AS1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid0);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid0, solution));
     }
@@ -304,6 +326,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testg1() throws Exception {
         String solution = WaterSortSearch.solve(grid1, "AS1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid1);
 assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1, solution));
     }
@@ -321,6 +344,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void     testg3() throws Exception {
         String solution = WaterSortSearch.solve(grid3, "AS1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid3);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid3, solution));
     }
@@ -329,6 +353,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testg4() throws Exception {
         String solution = WaterSortSearch.solve(grid4, "AS1", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid4);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid4, solution));
     }
@@ -338,6 +363,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testh0() throws Exception {
         String solution = WaterSortSearch.solve(grid0, "AS2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid0);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid0, solution));
     }
@@ -346,6 +372,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testh1() throws Exception {
         String solution = WaterSortSearch.solve(grid1, "AS2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid1);
 assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1, solution));
     }
@@ -363,6 +390,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testh3() throws Exception {
         String solution = WaterSortSearch.solve(grid3, "AS2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid3);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid3, solution));
     }
@@ -371,6 +399,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
     public void testh4() throws Exception {
         String solution = WaterSortSearch.solve(grid4, "AS2", false);
         solution = solution.replace(" ", "")+";";
+        System.out.println(solution);
         Checker pc = new Checker(grid4);
         assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid4, solution));
     }
@@ -428,16 +457,16 @@ class Checker{
 
     boolean t(){
         /////////// TESTS HACK/////////////////////////
-        System.out.println("Bozo bottles: ");
-
-        for (int u = 0; u< a.length; u++)
-        {
-            char[] b = a[u];
-            for (char c : b) {
-                System.out.print("" + c + ",");
-            }
-            System.out.println(";");
-        }
+//        System.out.println("Bozo bottles: ");
+//
+//        for (int u = 0; u< a.length; u++)
+//        {
+//            char[] b = a[u];
+//            for (char c : b) {
+//                System.out.print("" + c + ",");
+//            }
+//            System.out.println(";");
+//        }
         ////////////////////////////////////////////////
         for (int u = 0; u< a.length; u++){
             char[] b = a[u];
@@ -459,7 +488,7 @@ class Checker{
         if (solution.equals("nosolution")) {
             return false;
         }
-        System.out.println(solution);
+
         String[] y  = solution.split(";");
         String z = y[0];
         int _a = Integer.parseInt(y[1]);
@@ -476,7 +505,7 @@ class Checker{
             return false;
         }
 
-        System.out.println("Bozo cost: " + this.b);
+        //System.out.println("Bozo cost: " + this.b);
         return t() && this.b == _a;
     }
 }

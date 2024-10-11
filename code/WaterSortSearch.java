@@ -248,15 +248,12 @@ public class WaterSortSearch extends GenericSearch {
             return "NOSOLUTION";
         }
 
-        System.out.println(strategy + solution.pathCostFromRoot);
-        System.out.println("sol: " + solution.state);
+        System.out.println(strategy);
+        //System.out.println("sol: " + solution.state);
+
+        explainSolPlan(solution, visualize);
 
         return genSolutionStrFromNode(solution, problem.nodesExpanded);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(solve("5;4;" + "b,y,r,b;" + "b,y,r,r;" +
-                "y,r,b,y;" + "e,e,e,e;" + "e,e,e,e;", "AS2", false));
     }
 
     public static String genSolutionStrFromNode(Node sol, int nodesExpanded) {
@@ -268,6 +265,85 @@ public class WaterSortSearch extends GenericSearch {
                 operators = sol.operatorApplied + "," + operators;
         }
         return operators;
+    }
+
+    public static void explainSolPlan(Node sol, boolean visualize) {
+        if (visualize) {
+            BottleVisualizerGUI.visualizeSolutionPlan(sol);
+
+            Stack<Node> planNodes = new Stack<>();
+            Stack<String> oprStack = new Stack<>();
+            while (sol != null) {
+                planNodes.add(sol);
+                if (sol.operatorApplied != null) {
+                    oprStack.add(sol.operatorApplied);
+                }
+                sol = sol.parent;
+            }
+
+            while (!planNodes.isEmpty()) {
+                Node currentNode = planNodes.pop();
+                String currentOpr = (oprStack.isEmpty()) ? null : oprStack.pop();
+
+                // Print State, Depth, action
+
+                System.out.println("Current State: ");
+                drawBottles(currentNode.state.toString());
+                System.out.println("Depth: " + currentNode.depth);
+                System.out.println("Current Operation: " + ((currentOpr== null) ? "None (solution state)" : currentOpr));
+                System.out.println("----------------------------------------------------------------");
+
+            }
+        }
+    }
+
+    private static void drawBottles(String state) {
+        String[] bottles = state.split(";");  // Split the state by ';' to get individual bottles
+
+        // Assuming all bottles have the same height (max height)
+        int maxHeight = bottles[0].length();
+
+        // Draw bottles from top to bottom (reverse order)
+        for (int level = maxHeight - 1; level >= 0; level--) {
+            StringBuilder levelS = new StringBuilder(); // Use StringBuilder for efficient string concatenation
+
+            for (String bottle : bottles) {
+                // Handle cases where the bottle might not be tall enough
+                char color = (level < bottle.length()) ? bottle.charAt(level) : 'e'; // 'e' for empty
+                levelS.append(getColoredPart(color)).append(" "); // Add colored part
+            }
+
+            // Print the current level of bottles
+            System.out.println(levelS.toString()); // Print all bottles at the current level
+        }
+
+    }
+
+    // Helper function to represent the color with a visual symbol
+    private static String getColoredPart(char color) {
+        switch (color) {
+            case 'r':
+                return "\u001B[91m⬤\u001B[0m";  // Bright Red
+            case 'b':
+                return "\u001B[94m⬤\u001B[0m";  // Bright Blue
+            case 'y':
+                return "\u001B[93m⬤\u001B[0m";  // Bright Yellow
+            case 'g':
+                return "\u001B[92m⬤\u001B[0m";  // Bright Green
+            case 'o':
+                return "\u001B[38;5;208m⬤\u001B[0m";  // Bright Orange (using extended colors)
+            case 'p':
+                return "\u001B[35m⬤\u001B[0m";  // Magenta
+            case 'e':
+                return "\u001B[0m⬤\u001B[0m";  // Default color for empty (no color)
+            default:
+                return " ";
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solve("5;4;" + "b,y,r,b;" + "b,y,r,r;" +
+                "y,r,b,y;" + "e,e,e,e;" + "e,e,e,e;", "AS2", true));
     }
 }
 

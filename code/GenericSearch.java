@@ -66,12 +66,12 @@ public class GenericSearch {
 
         for (String opr : operators) {
             if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
-                System.out.println("should do " +  opr);
+                //System.out.println("should do " +  opr);
                 Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, 0);
                 nodes.add(newNode);
             }
         }
-        System.out.println("iter------------");
+        //System.out.println("iter------------");
 
         return nodes;
     }
@@ -88,7 +88,7 @@ public class GenericSearch {
 
         for (String opr : operators) {
             if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
-                System.out.println("should do " +  opr);
+                //System.out.println("should do " +  opr);
                 Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, 0);
                 nodes = enqueueAtFront(nodes, newNode);
             }
@@ -149,12 +149,12 @@ public class GenericSearch {
 
         for (String opr : operators) {
             if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
-                System.out.println("should do " +  opr);
+                //System.out.println("should do " +  opr);
                 Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, 0);
                 insertSorted(nodes, newNode, true, false);
             }
         }
-        System.out.println("iter------------");
+        //System.out.println("iter------------");
 
         return nodes;
     }
@@ -167,12 +167,12 @@ public class GenericSearch {
         // insert each node in "nodes" according to search strategy
         for (String opr : operators) {
             if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
-                System.out.println("should do " +  opr);
+                //System.out.println("should do " +  opr);
                 Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, heuristicNum);
                 insertSorted(nodes, newNode, false, true);
             }
         }
-        System.out.println("iter------------");
+        //System.out.println("iter------------");
 
         return nodes;
     }
@@ -185,12 +185,12 @@ public class GenericSearch {
         // insert each node in "nodes" according to search strategy
         for (String opr : operators) {
             if (problem.shouldPerformAction(nodeToExpand.state, opr, nodeToExpand)) {
-                System.out.println("should do " +  opr);
+                //m.out.println("should do " +  opr);
                 Node newNode = problem.perfomAction(nodeToExpand, nodeToExpand.state, opr, visualize, heuristicNum);
                 insertSorted(nodes, newNode, true, true);
             }
         }
-        System.out.println("iter------------");
+        //System.out.println("iter------------");
         return nodes;
     }
 
@@ -219,7 +219,7 @@ public class GenericSearch {
         }
 
 
-        System.out.println(nodes);
+        //System.out.println(nodes);
     }
 
     public static Queue<Node> enqueueAtFront(Queue<Node> nodes, Node n) {
@@ -229,7 +229,7 @@ public class GenericSearch {
             temp.add(nodes.poll());
         }
 
-        System.out.println(temp);
+        //System.out.println(temp);
         return temp;
 
     }
