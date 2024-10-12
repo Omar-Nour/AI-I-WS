@@ -109,9 +109,11 @@ public class GenericSearch {
         nodes.add(initialNode);
 
         int maxDepth = 0;
-        while (true) {
+        boolean validExpansionsRemaining = false; // assume false initially
+        while (validExpansionsRemaining || !nodes.isEmpty()) {
 
             if (nodes.isEmpty()) {
+                validExpansionsRemaining = false; // assume false until proven otherwise
                 nodes.add(initialNode);
                 maxDepth++;
 
@@ -134,9 +136,20 @@ public class GenericSearch {
                         nodes = enqueueAtFront(nodes, newNode);
                     }
                 }
+            } else { // when reaching max depth
+                if (!validExpansionsRemaining) {
+                    for (String opr : operators) { // check if any child node has expansions to do for next maxDepth
+                        if (problem.shouldPerformAction(currNode.state, opr, currNode)) {
+                            validExpansionsRemaining = true;
+                            break;
+                        }
+                    }
+                }
             }
 
         }
+
+        return null;
     }
 
     public static Queue<Node> ucs(Queue<Node> nodes, Node nodeToExpand, String[] operators, Problem problem, boolean visualize) {
