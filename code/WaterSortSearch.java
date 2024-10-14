@@ -200,19 +200,12 @@ class WaterSortProblem extends Problem {
         char[][] bottles = (char[][]) currState.getDS();
 
         for (char[] bottle : bottles) {
-            char baseColor = 'e';
-            boolean isMixed = false;
+            char currColor = 'e';
 
             for (char layer : bottle) {
-                if (layer != 'e') {
-                    if (baseColor == 'e') {
-                        baseColor = layer;
-                    } else if (layer != baseColor) {
-                        isMixed = true;
-                    }
-                    if (isMixed) {
-                        minPourCountToFix++;
-                    }
+                if (layer != 'e' && layer != currColor) {
+                    minPourCountToFix++;
+                    currColor = layer;
                 }
             }
         }
